@@ -6,12 +6,19 @@
 # 2. do nothing - in which case the goblin will attack him anyway
 # 3. flee
 
+class Hero:
+    def __init__(self, hero_power, hero_health):
+        self.hero_power = hero_power
+        self.hero_health = hero_health
+
+class Goblin:
+    def __init__(self, goblin_power, goblin_health)
+
 def main():
     hero_health = 10
     hero_power = 5
     goblin_health = 6
     goblin_power = 2
-
     while goblin_health > 0 and hero_health > 0:
         print("You have {} health and {} power.".format(hero_health, hero_power))
         print("The goblin has {} health and {} power.".format(goblin_health, goblin_power))
