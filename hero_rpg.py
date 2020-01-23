@@ -12,16 +12,18 @@ class Hero:
         self.hero_health = hero_health
 
 class Goblin:
-    def __init__(self, goblin_power, goblin_health)
+    def __init__(self, goblin_power, goblin_health):
+        self.goblin_power = goblin_power
+        self.goblin_health = goblin_health
 
 def main():
-    hero_health = 10
-    hero_power = 5
-    goblin_health = 6
-    goblin_power = 2
-    while goblin_health > 0 and hero_health > 0:
-        print("You have {} health and {} power.".format(hero_health, hero_power))
-        print("The goblin has {} health and {} power.".format(goblin_health, goblin_power))
+    heroObj = Hero(10, 9)# Hero Object
+    goblinObj = Goblin(1, 20)# Goblin Object
+    
+    
+    while goblinObj.goblin_power > 0 and heroObj.hero_power > 0:
+        print(f"You have {heroObj.hero_health} health and {heroObj.hero_power} power.")
+        print(f"The goblin has {goblinObj.goblin_health} health and {goblinObj.goblin_power} power.")
         print()
         print("What do you want to do?")
         print("1. fight goblin")
@@ -31,9 +33,9 @@ def main():
         raw_input = input()
         if raw_input == "1":
             # Hero attacks goblin
-            goblin_health -= hero_power
-            print("You do {} damage to the goblin.".format(hero_power))
-            if goblin_health <= 0:
+            goblinObj.goblin_health -= heroObj.hero_power
+            print(f"You do {heroObj.hero_power} damage to the goblin.")
+            if goblinObj.goblin_health <= 0:
                 print("The goblin is dead.")
         elif raw_input == "2":
             pass
@@ -43,11 +45,11 @@ def main():
         else:
             print("Invalid input {}".format(raw_input))
 
-        if goblin_health > 0:
+        if goblinObj.goblin_health > 0:
             # Goblin attacks hero
-            hero_health -= goblin_power
-            print("The goblin does {} damage to you.".format(goblin_power))
-            if hero_health <= 0:
+            heroObj.hero_health -= goblinObj.goblin_power
+            print(f"The goblin does {goblinObj.goblin_power} damage to you.")
+            if heroObj.hero_health <= 0:
                 print("You are dead.")
 
 main()
