@@ -10,11 +10,27 @@ class Hero:
     def __init__(self, hero_power, hero_health):
         self.hero_power = hero_power
         self.hero_health = hero_health
+    
+    def attack(self, enemy):
+        self.enemy = enemy
+        enemy.goblin_health-= self.hero_power
+        print(f"You do {self.hero_power} damage to the goblin.")
+        if enemy.goblin_health <= 0:
+            print("The goblin is dead.")
 
 class Goblin:
     def __init__(self, goblin_power, goblin_health):
         self.goblin_power = goblin_power
         self.goblin_health = goblin_health
+
+    def attack(self, defender):
+        self.defender = defender
+
+        defender.hero_health -= self.goblin_power
+        print(f"The goblin does {self.goblin_power} damage to you.")
+        if defender.hero_health <= 0:
+            print("You are dead.")
+
 
 def main():
     heroObj = Hero(10, 9)# Hero Object
@@ -31,12 +47,10 @@ def main():
         print("3. flee")
         print("> ", end=' ')
         raw_input = input()
+
         if raw_input == "1":
-            # Hero attacks goblin
-            goblinObj.goblin_health -= heroObj.hero_power
-            print(f"You do {heroObj.hero_power} damage to the goblin.")
-            if goblinObj.goblin_health <= 0:
-                print("The goblin is dead.")
+            heroObj.attack(goblinObj)# Hero attacks goblin
+            
         elif raw_input == "2":
             pass
         elif raw_input == "3":
@@ -47,9 +61,6 @@ def main():
 
         if goblinObj.goblin_health > 0:
             # Goblin attacks hero
-            heroObj.hero_health -= goblinObj.goblin_power
-            print(f"The goblin does {goblinObj.goblin_power} damage to you.")
-            if heroObj.hero_health <= 0:
-                print("You are dead.")
+            goblinObj.attack(heroObj)
 
 main()
