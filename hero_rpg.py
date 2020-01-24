@@ -5,6 +5,10 @@
 # 1. fight goblin
 # 2. do nothing - in which case the goblin will attack him anyway
 # 3. flee
+
+import random
+import time
+
 class Charachter:
     def __init__(self,power, health):
         self.power = power
@@ -21,8 +25,14 @@ class Hero(Charachter):
     
     def attack(self, enemy):
         self.enemy = enemy
-        enemy.health-= self.power
-        print(f"You do {self.power} damage to the goblin.")
+        bonus_damage = random.randint(1, 10)
+        if bonus_damage < 9:
+            enemy.health-= self.power
+            print(f"You do {self.power} damage to the goblin.")
+        elif bonus_damage >= 9:
+            enemy.health -= self.power * 2
+            print(f"You do {self.power} damage to the goblin.")
+            print(f"You did DOUBLE damage!")
         if enemy.health <= 0:
             print("The goblin is dead.")
     def print_status(self):
