@@ -10,7 +10,8 @@ import random
 import time
 
 class Charachter:
-    def __init__(self,power, health):
+    def __init__(self, name, power, health):
+        self.name = name
         self.power = power
         self.health = health
     
@@ -27,14 +28,23 @@ class Hero(Charachter):
         self.enemy = enemy
         bonus_damage = random.randint(1, 10)
         if bonus_damage < 9:
-            enemy.health-= self.power
-            print(f"You do {self.power} damage to the goblin.")
+            enemy.health -= self.power
+            print(f"You do {self.power} damage to the enemy.")
+            if enemy.name == "Medic":
+                heal = random.randint(1, 10)
+                if heal >= 9:
+                    enemy.health += 2
+                    print(f"Enemy heals up with {heal} points.")
+
         elif bonus_damage >= 9:
             enemy.health -= self.power * 2
-            print(f"You do {self.power} damage to the goblin.")
+            print(f"You do {self.power} damage to the enemy.")
             print(f"You did DOUBLE damage!")
-        if enemy.health <= 0:
-            print("The goblin is dead.")
+        if enemy.health > 0:
+            self.health -= enemy.power
+            print(f"{enemy.name} does {enemy.power} damage to you")
+        elif enemy.health <= 0:
+            print(f"{enemy.name} is dead.")
     def print_status(self):
         print(f"You have {self.health} health and {self.power} power.")
 
@@ -45,43 +55,51 @@ class Goblin(Charachter):
         self.defender = defender
 
         defender.health -= self.power
-        print(f"The goblin does {self.power} damage to you.")
+        print(f"The {self.name} does {self.power} damage to you.")
         if defender.health <= 0:
             print("You are dead.")
     def print_status(self):
-        print(f"The Goblin has {self.health} health and {self.power} power.")
+        print(f"{self.name} has {self.health} health and {self.power} power.")
 
 
 
 def main():
-    heroObj = Hero(10, 9)# Hero Object
-    goblinObj = Goblin(1, 20)# Goblin Object
-    zombieObj = Goblin(5,1000)# Zombie Object
+    heroObj = Hero("Hero", 5, 10)# Hero Object
+    goblinObj = Goblin("Goblin", 1, 20)# Goblin Object
+    zombieObj = Goblin("Zombie", 5,1000)# Zombie Object
+    medicObj = Goblin("Medic", 2, 20)# Medic Object
     
-    while goblinObj.alive() == True and heroObj.alive() == True:
-        goblinObj.print_status()
+    while heroObj.alive() == True:
         heroObj.print_status()
         print()
         print("What do you want to do?")
         print("1. fight goblin")
-        print("2. do nothing")
+        print("2. fight medic")
         print("3. flee")
         print("> ", end=' ')
         raw_input = input()
 
         if raw_input == "1":
-            heroObj.attack(goblinObj)# Hero attacks goblin
-            
+            if goblinObj.alive() == True:
+                heroObj.attack(goblinObj)# Hero attacks goblin
+                goblinObj.print_status()
+            else:
+                print("Goblin is alreadu dead. Attack someone else.")
         elif raw_input == "2":
-            pass
+            if medicObj.alive() == True:
+                heroObj.attack(medicObj)# Hero attacks Medic
+                medicObj.print_status()
+            else:
+                print("Medic is already dead. Attack someone else.")
+
         elif raw_input == "3":
             print("Goodbye.")
             break
         else:
             print("Invalid input {}".format(raw_input))
 
-        if goblinObj.alive() > 0:
-            # Goblin attacks hero
-            goblinObj.attack(heroObj)
+    if heroObj.alive() == False:
+        print(" ")
+        print("You have died. Booo Hooo let me play a sad tune on the smallest violin.")
 
 main()
