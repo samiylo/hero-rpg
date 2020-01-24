@@ -74,10 +74,10 @@ def main():
         heroObj.print_status()
         print()
         print("What do you want to do?")
-        print("1. fight goblin")
-        print("2. fight medic")
-        print("3. fight shadow")
-        print("4. flee")
+        print("1. Fight Goblin")
+        print("2. Fight Medic")
+        print("3. Fight Shadow")
+        print("4. Run like the baby you are")
         print("> ", end=' ')
         raw_input = input()
 
@@ -105,7 +105,7 @@ def main():
                 print("Shadow is already dead. Attack someone else")
 
         elif raw_input == "4":
-            print("Goodbye.")
+            print("Dont act like you have better things to do! Youl be back!")
             break
         else:
             print("Invalid input {}".format(raw_input))
