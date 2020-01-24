@@ -68,6 +68,7 @@ def main():
     goblinObj = Goblin("Goblin", 1, 20)# Goblin Object
     zombieObj = Goblin("Zombie", 5,1000)# Zombie Object
     medicObj = Goblin("Medic", 2, 20)# Medic Object
+    shadowObj = Goblin("Shadow", 0, 1)# Shadow Object
     
     while heroObj.alive() == True:
         heroObj.print_status()
@@ -75,7 +76,8 @@ def main():
         print("What do you want to do?")
         print("1. fight goblin")
         print("2. fight medic")
-        print("3. flee")
+        print("3. fight shadow")
+        print("4. flee")
         print("> ", end=' ')
         raw_input = input()
 
@@ -91,8 +93,18 @@ def main():
                 medicObj.print_status()
             else:
                 print("Medic is already dead. Attack someone else.")
-
         elif raw_input == "3":
+            hit_chance = random.randint(1,10)
+            if shadowObj.alive() == True:
+                if hit_chance == 1:
+                    heroObj.attack(shadowObj)
+                    shadowObj.print_status()
+                else:
+                    print("Your attacked missed!\n Try again!")
+            else:
+                print("Shadow is already dead. Attack someone else")
+
+        elif raw_input == "4":
             print("Goodbye.")
             break
         else:
