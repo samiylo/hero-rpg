@@ -21,6 +21,11 @@ class Charachter:
             return True
         else:
             return False
+    def supertonic(self):
+        if self.coins >= 70:
+            self.coins -= 70
+            self.health += 20
+        pass
 
 
 class Hero(Charachter):
@@ -69,7 +74,7 @@ class Goblin(Charachter):
 
 
 def main():
-    heroObj = Hero("Hero", 5, 10, 0, 100)# 
+    heroObj = Hero("Hero", 5, 10, 0, 30)# 
     goblinObj = Goblin("Goblin", 1, 20, 0, 10)# Name, power, health, armor coins
     zombieObj = Goblin("Zombie", 5,1000, 0, 40)# Name, power, health, armor coins
     medicObj = Goblin("Medic", 2, 20, 0, 60)# Name, power, health, armor coins
@@ -114,13 +119,38 @@ def main():
                 print("Shadow is already dead. Attack someone else")
 
         elif raw_input == "4":
-            print("Dont act like you have better things to do! Youl be back!")
-            break
+            outro_chance = random.randint(1, 5)
+            if outro_chance == 1:
+                print("--------------------------------")
+                print("Dont act like you have better things to do! Youl be back!")
+                print("--------------------------------")
+                break
+            elif outro_chance == 2:
+                print("--------------------------------")
+                print("How dare you leav so early?")
+                print("--------------------------------")
+                break
+            elif outro_chance == 3:
+                print("--------------------------------")
+                print("Are you gonna cheat on me with another game?")
+                print("--------------------------------")
+                break
+            elif outro_chance == 4:
+                print("--------------------------------")
+                print("Fine leave! Terrible user anyway!")
+                print("--------------------------------")
+                break
+            elif outro_chance == 5:
+                print("--------------------------------")
+                print("NOOOOooooo dont turn me ooof...")
+                print("--------------------------------")
+                break
         else:
             print("Invalid input {}".format(raw_input))
 
     if heroObj.alive() == False:
-        print(" ")
-        print("You have died. Booo Hooo let me play a sad tune on the smallest violin.")
+        print("--------------------------------")
+        print("You have died. Booo Hooo let me\nplay a sad tune on the smallest violin.")
+        print("--------------------------------")
 
 main()
