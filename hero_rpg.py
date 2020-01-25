@@ -22,10 +22,14 @@ class Charachter:
         else:
             return False
     def supertonic(self):
-        if self.coins >= 70:
-            self.coins -= 70
+        if self.coins >= 20:
+            self.coins -= 20
             self.health += 20
-        pass
+            print("You have purchased Super Tonic and gained 20 hp.")
+            print(self.coins)
+        else:
+            print("You dont have enough coins for this item.")
+            print(self.coins)
 
 
 class Hero(Charachter):
@@ -75,10 +79,10 @@ class Goblin(Charachter):
 
 def main():
     heroObj = Hero("Hero", 5, 10, 0, 30)# 
-    goblinObj = Goblin("Goblin", 1, 20, 0, 10)# Name, power, health, armor coins
-    zombieObj = Goblin("Zombie", 5,1000, 0, 40)# Name, power, health, armor coins
-    medicObj = Goblin("Medic", 2, 20, 0, 60)# Name, power, health, armor coins
-    shadowObj = Goblin("Shadow", 0, 1, 0, 10)# Name, power, health, armor coins
+    goblinObj = Goblin("Goblin", 1, 20, 0, 10)# Name, power, health, armor, coins
+    zombieObj = Goblin("Zombie", 5,1000, 0, 40)# Name, power, health, armor, coins
+    medicObj = Goblin("Medic", 2, 20, 0, 60)# Name, power, health, armor, coins
+    shadowObj = Goblin("Shadow", 0, 1, 0, 10)# Name, power, health, armor, coins
     
     while heroObj.alive() == True:
         heroObj.print_status()
@@ -93,6 +97,12 @@ def main():
 
         if raw_input == "1":
             if goblinObj.alive() == True:
+                if heroObj.health <= 8:
+                    choice = int(input(f"Your health is {heroObj.health} \nwould you like to purchase a Super Tonic?\n1. Yes\n2. No\n>"))
+                    if choice == 1:
+                        heroObj.supertonic()
+                else:
+                    pass
                 heroObj.attack(goblinObj)# Hero attacks goblin
                 print("--------------------------------")
                 goblinObj.print_status()
@@ -101,6 +111,12 @@ def main():
                 print("Goblin is alreadu dead. Attack someone else.")
         elif raw_input == "2":
             if medicObj.alive() == True:
+                if heroObj.health <= 8:
+                    choice = int(input(f"Your health is {heroObj.health} \nwould you like to purchase a Super Tonic?\n1. Yes\n2. No\n>"))
+                    if choice == 1:
+                        heroObj.supertonic()
+                else:
+                    pass
                 heroObj.attack(medicObj)# Hero attacks Medic
                 print("--------------------------------")
                 medicObj.print_status()
@@ -109,6 +125,12 @@ def main():
         elif raw_input == "3":
             hit_chance = random.randint(1,10)
             if shadowObj.alive() == True:
+                if heroObj.health <= 8:
+                    choice = int(input(f"Your health is {heroObj.health} \nwould you like to purchase a Super Tonic?\n1. Yes\n2. No\n>"))
+                    if choice == 1:
+                        heroObj.supertonic()
+                else:
+                    pass
                 if hit_chance == 1:
                     heroObj.attack(shadowObj)
                     print("--------------------------------")
