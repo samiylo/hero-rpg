@@ -95,117 +95,128 @@ def main():
     
     while heroObj.alive() == True:
         heroObj.print_status()
-        print()
-        print("What do you want to do?")
-        print("1. Fight Goblin")
-        print("2. Fight Medic")
-        print("3. Fight Shadow")
-        print("4. Run like the baby you are")
-        print("> ", end=' ')
-        raw_input = input()
-
-        if raw_input == "1":
-            if goblinObj.alive() == True:
-                if heroObj.health <= 8:
-                    choice = int(input(f"Your health is {heroObj.health} \nwould you like to go to the shop?\n1. Yes\n2. No\n>"))
-                    if choice == 1:
-                        print("1. Super Tonic: 20 Coins")
-                        print("2. Armor: 10 Coins")
-                        shopping_cart = int(input("What would you like to buy?"))
-                        if shopping_cart == 1:
-                            heroObj.supertonic()
-                        elif shopping_cart == 2:
-                            heroObj.sheild()
-                        else:
-                            pass
-                else:
-                    pass
-                heroObj.attack(goblinObj)# Hero attacks goblin
-                print("--------------------------------")
-                goblinObj.print_status()
-                
-            else:
-                print("Goblin is alreadu dead. Attack someone else.")
-        elif raw_input == "2":
-            if medicObj.alive() == True:
-                if heroObj.health <= 8:
-                    choice = int(input(f"Your health is {heroObj.health} \nwould you like to go to the shop?\n1. Yes\n2. No\n>"))
-                    if choice == 1:
-                        print("1. Super Tonic: 20 Coins")
-                        print("2. Armor: 10 Coins")
-                        shopping_cart = int(input("What would you like to buy?"))
-                        if shopping_cart == 1:
-                            heroObj.supertonic()
-                        elif shopping_cart == 2:
-                            heroObj.sheild()
-                        else:
-                            pass
-                else:
-                    pass
-                heroObj.attack(medicObj)# Hero attacks Medic
-                print("--------------------------------")
-                medicObj.print_status()
-            else:
-                print("Medic is already dead. Attack someone else.")
-        elif raw_input == "3":
-            hit_chance = random.randint(1,10)
-            if shadowObj.alive() == True:
-                if heroObj.health <= 8:
-                    choice = int(input(f"Your health is {heroObj.health} \nwould you like to go to the shop?\n1. Yes\n2. No\n>"))
-                    if choice == 1:
-                        print("1. Super Tonic: 20 Coins")
-                        print("2. Armor: 10 Coins")
-                        shopping_cart = int(input("What would you like to buy?"))
-                        if shopping_cart == 1:
-                            heroObj.supertonic()
-                        elif shopping_cart == 2:
-                            heroObj.sheild()
-                        else:
-                            pass
-                else:
-                    pass
-                if hit_chance == 1:
-                    heroObj.attack(shadowObj)
+        #print("What would you like to do?")
+        print("___________")
+        print("1. Go Hunt")
+        print("2. Go to Shop")
+        print("3. Exit")
+        # print("What do you want to do?")
+        # print("1. Fight Goblin")
+        # print("2. Fight Medic")
+        # print("3. Fight Shadow")
+        # print("4. Run like the baby you are")
+        start_input = input("What would you like to do?")
+        if start_input == "1":
+            
+            print("> ", end=' ')
+            print('Three enemies appear!')
+            print("1. Fight Goblin")
+            print("2. Fight Medic")
+            print("3. Fight Shadow")
+            print("4. Run like a baby.")
+            raw_input = input()
+            if raw_input == "1":
+                if goblinObj.alive() == True:
+                    if heroObj.health <= 8:
+                        choice = int(input(f"Your health is {heroObj.health} \nwould you like to go to the shop?\n1. Yes\n2. No\n>"))
+                        if choice == 1:
+                            print("1. Super Tonic: 20 Coins")
+                            print("2. Armor: 10 Coins")
+                            shopping_cart = int(input("What would you like to buy?"))
+                            if shopping_cart == 1:
+                                heroObj.supertonic()
+                            elif shopping_cart == 2:
+                                heroObj.sheild()
+                            else:
+                                pass
+                    else:
+                        pass
+                    heroObj.attack(goblinObj)# Hero attacks goblin
                     print("--------------------------------")
-                    shadowObj.print_status()
+                    goblinObj.print_status()
+                    
                 else:
-                    print("Your attacked missed!\n Try again!")
+                    print("Goblin is alreadu dead. Attack someone else.")
+            elif raw_input == "2":
+                if medicObj.alive() == True:
+                    if heroObj.health <= 8:
+                        choice = int(input(f"Your health is {heroObj.health} \nwould you like to go to the shop?\n1. Yes\n2. No\n>"))
+                        if choice == 1:
+                            print("1. Super Tonic: 20 Coins")
+                            print("2. Armor: 10 Coins")
+                            shopping_cart = int(input("What would you like to buy?"))
+                            if shopping_cart == 1:
+                                heroObj.supertonic()
+                            elif shopping_cart == 2:
+                                heroObj.sheild()
+                            else:
+                                pass
+                    else:
+                        pass
+                    heroObj.attack(medicObj)# Hero attacks Medic
+                    print("--------------------------------")
+                    medicObj.print_status()
+                else:
+                    print("Medic is already dead. Attack someone else.")
+            elif raw_input == "3":
+                hit_chance = random.randint(1,10)
+                if shadowObj.alive() == True:
+                    if heroObj.health <= 8:
+                        choice = int(input(f"Your health is {heroObj.health} \nwould you like to go to the shop?\n1. Yes\n2. No\n>"))
+                        if choice == 1:
+                            print("1. Super Tonic: 20 Coins")
+                            print("2. Armor: 10 Coins")
+                            shopping_cart = int(input("What would you like to buy?"))
+                            if shopping_cart == 1:
+                                heroObj.supertonic()
+                            elif shopping_cart == 2:
+                                heroObj.sheild()
+                            else:
+                                pass
+                    else:
+                        pass
+                    if hit_chance == 1:
+                        heroObj.attack(shadowObj)
+                        print("--------------------------------")
+                        shadowObj.print_status()
+                    else:
+                        print("Your attacked missed!\n Try again!")
+                else:
+                    print("Shadow is already dead. Attack someone else")
+
+            elif raw_input == "4":
+                outro_chance = random.randint(1, 5)
+                if outro_chance == 1:
+                    print("--------------------------------")
+                    print("Dont act like you have better things to do! Youl be back!")
+                    print("--------------------------------")
+                    break
+                elif outro_chance == 2:
+                    print("--------------------------------")
+                    print("How dare you leav so early?")
+                    print("--------------------------------")
+                    break
+                elif outro_chance == 3:
+                    print("--------------------------------")
+                    print("Are you gonna cheat on me with another game?")
+                    print("--------------------------------")
+                    break
+                elif outro_chance == 4:
+                    print("--------------------------------")
+                    print("Fine leave! Terrible user anyway!")
+                    print("--------------------------------")
+                    break
+                elif outro_chance == 5:
+                    print("--------------------------------")
+                    print("NOOOOooooo dont turn me ooof...")
+                    print("--------------------------------")
+                    break
             else:
-                print("Shadow is already dead. Attack someone else")
+                print("Invalid input {}".format(raw_input))
 
-        elif raw_input == "4":
-            outro_chance = random.randint(1, 5)
-            if outro_chance == 1:
-                print("--------------------------------")
-                print("Dont act like you have better things to do! Youl be back!")
-                print("--------------------------------")
-                break
-            elif outro_chance == 2:
-                print("--------------------------------")
-                print("How dare you leav so early?")
-                print("--------------------------------")
-                break
-            elif outro_chance == 3:
-                print("--------------------------------")
-                print("Are you gonna cheat on me with another game?")
-                print("--------------------------------")
-                break
-            elif outro_chance == 4:
-                print("--------------------------------")
-                print("Fine leave! Terrible user anyway!")
-                print("--------------------------------")
-                break
-            elif outro_chance == 5:
-                print("--------------------------------")
-                print("NOOOOooooo dont turn me ooof...")
-                print("--------------------------------")
-                break
-        else:
-            print("Invalid input {}".format(raw_input))
-
-    if heroObj.alive() == False:
-        print("--------------------------------")
-        print("You have died. Booo Hooo let me\nplay a sad tune on the smallest violin.")
-        print("--------------------------------")
+        if heroObj.alive() == False:
+            print("--------------------------------")
+            print("You have died. Booo Hooo let me\nplay a sad tune on the smallest violin.")
+            print("--------------------------------")
 
 main()
